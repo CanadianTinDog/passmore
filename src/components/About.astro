@@ -1,0 +1,85 @@
+---
+---
+
+<section id="about" class="bg-navy py-24 md:py-32 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Photo column -->
+      <div class="relative about-photo">
+        <!-- Decorative frame -->
+        <div class="absolute -top-4 -left-4 w-full h-full border border-gold/30"></div>
+        <div class="relative">
+          <img
+            src="/images/kiraOG.jpg"
+            alt="Kira Passmore, founder of Passmore Bookkeeping & Tax Solutions"
+            class="w-full object-cover object-top max-h-[600px]"
+            style="filter: brightness(0.95) contrast(1.05);"
+            loading="lazy"
+          />
+          <!-- Gold overlay strip -->
+          <div class="absolute bottom-0 left-0 right-0 h-1 bg-gold"></div>
+        </div>
+      </div>
+
+      <!-- Text column -->
+      <div class="about-text">
+        <p class="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-4">Meet Kira</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-cream font-bold leading-tight mb-6">
+          Your Dedicated Financial Partner
+        </h2>
+        <div class="w-16 h-px bg-gold mb-8"></div>
+
+        <div class="space-y-5 text-cream/70 leading-relaxed">
+          <p>
+            With 20 years of experience in bookkeeping and client engagement — and a background from the University of the Fraser Valley — I've built my practice around one belief: that every client deserves accurate books, honest advice, and someone who actually picks up the phone.
+          </p>
+          <p>
+            I've assembled a small, highly capable team so that your needs are met promptly and professionally. Together we offer bookkeeping, tax filing, payroll, and financial reporting tailored to your specific situation — whether you're an individual, a sole proprietor, or a growing corporation.
+          </p>
+          <p>
+            I've lived in Mission since childhood, raised my family here, and built my business here. When you work with Passmore, you're working with someone who has a real stake in this community's success.
+          </p>
+        </div>
+
+        <!-- Stats row -->
+        <div class="mt-12 grid grid-cols-2 gap-6 border-t border-cream/10 pt-10">
+          <div class="text-center stat-item">
+            <div class="font-serif text-3xl md:text-4xl font-bold text-gold mb-1">20+</div>
+            <p class="text-cream/50 text-xs tracking-wide uppercase leading-tight">Years Experience</p>
+          </div>
+          <div class="text-center stat-item">
+            <div class="font-serif text-3xl md:text-4xl font-bold text-gold mb-1">100%</div>
+            <p class="text-cream/50 text-xs tracking-wide uppercase leading-tight">Local</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      '.about-photo',
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '#about', start: 'top 75%' },
+      }
+    );
+
+    gsap.fromTo(
+      '.about-text',
+      { opacity: 0, x: 50 },
+      {
+        opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '#about', start: 'top 75%' },
+      }
+    );
+
+  });
+</script>

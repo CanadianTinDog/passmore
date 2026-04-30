@@ -1,0 +1,142 @@
+---
+const services = [
+  {
+    id: 'personal',
+    title: 'Personal Income Tax',
+    tagline: 'Straightforward filing. Maximum return.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
+    items: [
+      'T1 General Tax Return preparation and filing',
+      'Employment, investment, and self-employment income',
+      'RRSP contributions and retirement planning',
+      'Medical, charitable, and childcare deductions',
+      'Canada Child Benefit and provincial tax credits',
+      'Tax planning for current and future years',
+    ],
+  },
+  {
+    id: 'business',
+    title: 'Business Services',
+    tagline: 'Keep your books clean. Keep your business moving.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>`,
+    items: [
+      'Bookkeeping setup and ongoing maintenance',
+      'Accounts receivable and payable management',
+      'Bank reconciliation and financial reports',
+      'Payroll processing and tax remittances',
+      'GST/HST returns and input tax credits',
+      'Sole proprietorship T1/T2125 tax filing',
+      'Home office and employment expense claims',
+    ],
+  },
+  {
+    id: 'corporate',
+    title: 'Corporate Tax',
+    tagline: 'Professional tax strategy. Real results.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>`,
+    items: [
+      'Corporate tax return preparation (T2)',
+      'Strategic tax planning to minimize liabilities',
+      'Compliance, reporting, and deadline management',
+      'Tax optimization and deduction identification',
+      'CRA audit representation and issue resolution',
+      'Financial analysis and forecasting support',
+    ],
+  },
+];
+---
+
+<section id="services" class="bg-cream py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-16 scroll-reveal">
+      <p class="text-gold-dark text-sm font-medium tracking-[0.3em] uppercase mb-3">What We Do</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-navy font-bold leading-tight max-w-lg">
+        Services Built Around Your Needs
+      </h2>
+      <div class="mt-5 w-16 h-px bg-gold-dark"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {services.map((service, i) => (
+        <div
+          class="service-card group bg-white border border-navy/10 p-8 cursor-pointer relative overflow-hidden"
+          x-data="{ open: false }"
+          style={`--delay: ${i * 0.15}s`}
+        >
+          <!-- Gold border reveal on hover/open -->
+          <div class="absolute top-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+          <!-- Icon -->
+          <div class="text-gold-dark mb-5" set:html={service.icon} />
+
+          <!-- Title -->
+          <h3 class="font-serif text-2xl text-navy font-semibold mb-2">{service.title}</h3>
+          <p class="text-navy/60 text-sm mb-6 leading-relaxed">{service.tagline}</p>
+
+          <!-- Toggle button -->
+          <button
+            @click="open = !open"
+            class="flex items-center gap-2 text-gold-dark text-sm font-medium tracking-wide hover:gap-3 transition-all duration-300"
+          >
+            <span x-text="open ? 'Show less' : 'View services'">View services</span>
+            <svg
+              class="w-4 h-4 transition-transform duration-300"
+              :class="open ? 'rotate-180' : ''"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Expandable service list -->
+          <div
+            x-show="open"
+            x-transition:enter="transition duration-300 ease-out"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition duration-200 ease-in"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            class="mt-6 pt-6 border-t border-navy/10"
+          >
+            <ul class="space-y-2.5">
+              {service.items.map(item => (
+                <li class="flex items-start gap-2.5 text-navy/70 text-sm leading-relaxed">
+                  <span class="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-gold-dark"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      '#services .scroll-reveal',
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: '#services', start: 'top 80%' },
+      }
+    );
+
+    gsap.fromTo(
+      '#services .service-card',
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.15,
+        scrollTrigger: { trigger: '#services .service-card', start: 'top 85%' },
+      }
+    );
+  });
+</script>
